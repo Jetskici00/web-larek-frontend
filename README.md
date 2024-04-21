@@ -49,23 +49,124 @@ npm run build
 yarn build
 ```
 
-## Архитектура приложения
+## Описание типов данных
 
-Приложение построено на упрощенной версии шаблона проектирования MVP (Model-View-Presenter).
+## Интерфейс MainPageActions
 
-- Model (Модели): Отвечают за управление данными и бизнес-логику.
-- View (Отображения): Отвечают за отображение данных и взаимодействие с пользователем.
-- Presenter (Ведущий): Координирует работу View и Model, обрабатывает события и обновляет состояние приложения.
-  В данном случае, используется общий "Presenter", который координирует работу всех View и Model через событийно-ориентированный подход. Компоненты взаимодействуют друг с другом, отправляя и получая события.
+Описывает возможные действия на главной странице
 
-### Модели данных (Model)
+```ts
+interface MainPageActions {
+	productGrid: HTMLElement[];
+	scrollLocked: boolean;
+}
+```
 
-- `AppState`:
-  - Центральная модель данных приложения, представляющая собой глобальное хранилище информации.
-  - Отвечает за хранение и управление данными о товарах, корзине и заказе.
-  - Предоставляет методы для изменения данных и оповещения об изменениях через события.
+## Интерфейс ProductDetails
 
-### Интерфейс `IAppState`
+Подробная информация о продукте
+
+```ts
+interface ProductDetails {
+	id: string;
+	description: string;
+	imageUrl: string;
+	name: string;
+	category: string;
+	price: number | null;
+}
+```
+
+## Интерфейс ItemCardActions
+
+Действия, доступные для карточки товара
+
+```ts
+interface ItemCardActions {
+	onClick: (event: MouseEvent) => void;
+}
+```
+
+## Интерфейс ItemCardData
+
+Данные для отображения карточки товара
+
+```ts
+interface ItemCardData {
+	buttonText: string;
+	quantity: number | null;
+}
+```
+
+## Интерфейс ModalContent
+
+Содержимое модального окна
+
+```ts
+interface ModalContent {
+	content: HTMLElement;
+}
+```
+
+## Интерфейс ShoppingCartView
+
+Данные для отображения корзины.
+
+```ts
+interface ShoppingCartView {
+	items: HTMLElement[];
+	total: number | string;
+	selectedIds: string[];
+}
+```
+
+## Интерфейс FieldState
+
+Состояние поля формы
+
+```ts
+interface FieldState {
+	valid: boolean;
+	errors: string[];
+}
+```
+
+## Интерфейс DeliveryInfo
+
+Адрес доставки
+
+```ts
+interface DeliveryInfo {
+	paymentType: string;
+	address: string;
+}
+```
+
+## Интерфейс CustomerContacts
+
+Контактные данные покупателя
+
+```ts
+interface CustomerContacts {
+	email: string;
+	phone: string;
+}
+```
+
+## Интерфейс OrderData extends DeliveryInfo, CustomerContacts
+
+Объединяет информацию о доставке и контактах
+
+```ts
+interface OrderData extends DeliveryInfo, CustomerContacts {
+	total: number | string;
+	items: string[];
+}
+```
+
+## Интерфейс CustomerData extends CustomerContacts
+
+Информация о покупателе и его заказах
 
 ```ts
 interface CustomerData extends CustomerContacts {
