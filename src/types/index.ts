@@ -83,5 +83,7 @@ export interface OrderSuccess {
 	total: number;
 }
 
-export type FormErrorsOrder = Partial<Record<keyof OrderData, string>>;
-export type FormErrorsContacts = Partial<Record<keyof CustomerData, string>>;
+export type FormErrorsOrder = Partial<Record<keyof DeliveryInfo, string>>;
+export type FormErrorsContacts = Partial<
+	Record<keyof CustomerContacts, string>
+>;
