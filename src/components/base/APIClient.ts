@@ -1,5 +1,3 @@
-// components/base/APIClient.ts
-
 // Определяем типы для ответа API и методов POST-запроса
 export type ApiListResponse<Type> = {
 	total: number;
@@ -37,7 +35,7 @@ export class APIClient {
 		return fetch(this.baseUrl + uri, {
 			...this.options,
 			method: 'GET',
-		}).then(this.handleResponse);
+		}).then((response) => this.handleResponse(response));
 	}
 
 	// Выполняет POST-запрос
@@ -46,6 +44,6 @@ export class APIClient {
 			...this.options,
 			method,
 			body: JSON.stringify(data),
-		}).then(this.handleResponse);
+		}).then((response) => this.handleResponse(response));
 	}
 }

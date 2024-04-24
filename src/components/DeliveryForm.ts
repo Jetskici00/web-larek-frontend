@@ -1,16 +1,16 @@
 import { FormDataProcessor } from './common/FormDataProcessor';
-import { DeliveryInfo } from '../types';
+import { IActions, DeliveryInfo } from '../types';
 import { ensureElement } from '../utils/utils';
 import { IEventBus } from './base/EventBus';
 
-export class DeliveryForm extends FormDataProcessor {
+export class DeliveryForm extends FormDataProcessor<DeliveryInfo> {
 	protected _cardButton: HTMLButtonElement;
 	protected _cashButton: HTMLButtonElement;
 
 	constructor(
 		container: HTMLFormElement,
 		events: IEventBus,
-		actions?: { onClick: (event: MouseEvent) => void }
+		actions?: IActions
 	) {
 		super(container, events);
 

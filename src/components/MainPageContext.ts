@@ -3,7 +3,7 @@ import { ensureElement } from '../utils/utils';
 import { UserInterfaceComponent } from './base/UserInterfaceComponent';
 import { IEventBus } from './base/EventBus';
 
-export class MainPageContext extends UserInterfaceComponent {
+export class MainPageContext extends UserInterfaceComponent<MainPageActions> {
 	protected _counter: HTMLElement;
 	protected _productGrid: HTMLElement;
 	protected _wrapper: HTMLElement;
@@ -15,6 +15,7 @@ export class MainPageContext extends UserInterfaceComponent {
 		this._counter = ensureElement<HTMLElement>('.header__basket-counter');
 		this._productGrid = ensureElement<HTMLElement>('.gallery');
 		this._wrapper = ensureElement<HTMLElement>('.page__wrapper');
+		this._basket = ensureElement<HTMLElement>('.header__basket');
 
 		this._basket.addEventListener('click', () => {
 			this.events.emit('basket:open');

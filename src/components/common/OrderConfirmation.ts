@@ -1,12 +1,12 @@
-import { OrderSuccess } from '../../types';
+import { OrderSuccess, ISuccessActions } from '../../types';
 import { ensureElement } from '../../utils/utils';
 import { UserInterfaceComponent } from '../base/UserInterfaceComponent';
 
-export class OrderConfirmation extends UserInterfaceComponent {
+export class OrderConfirmation extends UserInterfaceComponent<OrderSuccess> {
 	protected _close: HTMLElement;
 	protected _total: HTMLElement;
 
-	constructor(container: HTMLElement, actions?: { onClick: () => void }) {
+	constructor(container: HTMLElement, actions?: ISuccessActions) {
 		super(container);
 
 		this._close = ensureElement<HTMLElement>(
@@ -24,6 +24,6 @@ export class OrderConfirmation extends UserInterfaceComponent {
 	}
 
 	set total(total: number | string) {
-		this.setText(this._total, `Списано ${total} баллов`);
+		this.setText(this._total, `Списано ${total} синапсов`);
 	}
 }

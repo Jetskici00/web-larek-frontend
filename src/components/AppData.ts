@@ -23,7 +23,7 @@ export class Product extends DataModel<ProductDetails> {
 	category: string;
 	price: number | null;
 	status: ProductStatus = 'sell';
-	quantity: number = 0;
+	quantity = 0;
 }
 
 // Класс для управления состоянием приложения

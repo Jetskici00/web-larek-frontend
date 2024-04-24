@@ -3,7 +3,7 @@ import { IEventBus } from '../base/EventBus';
 import { ensureElement } from '../../utils/utils';
 import { FieldState } from '../../types';
 
-export class FormDataProcessor {
+export class FormDataProcessor<T> extends UserInterfaceComponent<FieldState> {
 	protected _submit: HTMLButtonElement;
 	protected _errors: HTMLElement;
 

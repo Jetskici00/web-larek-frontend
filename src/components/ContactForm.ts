@@ -2,7 +2,7 @@ import { FormDataProcessor } from './common/FormDataProcessor';
 import { CustomerContacts } from '../types';
 import { IEventBus } from './base/EventBus';
 
-export class ContactForm extends FormDataProcessor {
+export class ContactForm extends FormDataProcessor<CustomerContacts> {
 	constructor(container: HTMLFormElement, events: IEventBus) {
 		super(container, events);
 	}

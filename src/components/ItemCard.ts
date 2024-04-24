@@ -3,7 +3,7 @@ import { categoryColour } from '../utils/constants';
 import { ensureElement } from '../utils/utils';
 import { UserInterfaceComponent } from './base/UserInterfaceComponent';
 
-export class ItemCard extends UserInterfaceComponent {
+export class ItemCard extends UserInterfaceComponent<ItemCardData> {
 	protected _name: HTMLElement;
 	protected _image: HTMLImageElement;
 	protected _category: HTMLElement;
@@ -11,6 +11,7 @@ export class ItemCard extends UserInterfaceComponent {
 	protected _description: HTMLElement;
 	protected _buttonText: string;
 	protected _button: HTMLButtonElement;
+	protected _index: HTMLElement;
 
 	constructor(container: HTMLElement, actions?: ItemCardActions) {
 		super(container);
@@ -21,6 +22,7 @@ export class ItemCard extends UserInterfaceComponent {
 		this._price = container.querySelector(`.card__price`);
 		this._description = container.querySelector(`.card__text`);
 		this._button = container.querySelector(`.card__button`);
+		this._index = container.querySelector('.basket__item-index');
 
 		if (actions?.onClick) {
 			if (this._button) {
@@ -86,5 +88,13 @@ export class ItemCard extends UserInterfaceComponent {
 	// Устанавливает описание товара
 	set description(value: string) {
 		this.setText(this._description, value);
+	}
+
+	set index(value: string) {
+		this._index.textContent = value;
+	}
+
+	get index(): string {
+		return this._index.textContent || '';
 	}
 }

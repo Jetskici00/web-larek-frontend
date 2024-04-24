@@ -1,7 +1,7 @@
 /**
  * Базовый компонент пользовательского интерфейса
  */
-export abstract class UserInterfaceComponent {
+export abstract class UserInterfaceComponent<T> {
 	protected constructor(protected readonly container: HTMLElement) {
 		// Код в конструкторе выполняется ДО всех объявлений в дочернем классе
 	}
@@ -49,7 +49,7 @@ export abstract class UserInterfaceComponent {
 	}
 
 	// Возвращает корневой DOM-элемент компонента
-	render(data?: Partial): HTMLElement {
+	render(data?: Partial<T>): HTMLElement {
 		Object.assign(this as object, data ?? {});
 		return this.container;
 	}

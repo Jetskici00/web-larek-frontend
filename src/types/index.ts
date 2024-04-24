@@ -20,9 +20,9 @@ export interface ItemCardActions {
 }
 
 // Данные для отображения карточки товара
-export interface ItemCardData {
+export interface ItemCardData extends ProductDetails {
 	buttonText: string;
-	quantity: number | null;
+	quantity: number | string;
 }
 
 // Содержимое модального окна
@@ -83,7 +83,5 @@ export interface OrderSuccess {
 	total: number;
 }
 
-export type FormErrorsOrder = Partial<Record<keyof DeliveryInfo, string>>;
-export type FormErrorsContacts = Partial<
-	Record<keyof CustomerContacts, string>
->;
+export type FormErrorsOrder = Partial<Record<keyof OrderData, string>>;
+export type FormErrorsContacts = Partial<Record<keyof CustomerData, string>>;

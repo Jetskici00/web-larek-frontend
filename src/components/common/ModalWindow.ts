@@ -3,7 +3,7 @@ import { ensureElement } from '../../utils/utils';
 import { IEventBus } from '../base/EventBus';
 import { ModalContent } from '../../types';
 
-export class ModalWindow extends UserInterfaceComponent {
+export class ModalWindow extends UserInterfaceComponent<ModalContent> {
 	protected _closeButton: HTMLButtonElement;
 	protected _content: HTMLElement;
 
