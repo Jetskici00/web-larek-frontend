@@ -18,8 +18,8 @@ export type ProductStatus = 'basket' | 'sell';
 export class Product extends DataModel<ProductDetails> {
 	id: string;
 	description: string;
-	imageUrl: string;
-	name: string;
+	image: string;
+	title: string;
 	category: string;
 	price: number | null;
 	status: ProductStatus = 'sell';

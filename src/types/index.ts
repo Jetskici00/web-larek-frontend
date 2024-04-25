@@ -8,8 +8,8 @@ export interface MainPageActions {
 export interface ProductDetails {
 	id: string;
 	description: string;
-	imageUrl: string;
-	name: string;
+	image: string;
+	title: string;
 	category: string;
 	price: number | null;
 }
@@ -62,7 +62,6 @@ export interface OrderData extends DeliveryInfo, CustomerContacts {
 }
 
 // Информация о покупателе и его заказах
-
 export interface CustomerData extends CustomerContacts {
 	items: string[];
 }

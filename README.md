@@ -1,7 +1,7 @@
 # Проектная работа "Веб-ларек" - Интернет-магазин
 
 Этот проект представляет собой веб-приложение для интернет-магазина, разработанное с использованием стека технологий HTML, SCSS, TypeScript и Webpack.
-Используем архитектурный патерн  MVVM (Model-View-ViewModel).
+Используем архитектурный патерн MVVM (Model-View-ViewModel).
 
 ## Структура проекта
 
@@ -71,8 +71,8 @@ interface MainPageActions {
 interface ProductDetails {
 	id: string;
 	description: string;
-	imageUrl: string;
-	name: string;
+	image: string;
+	title: string;
 	category: string;
 	price: number | null;
 }

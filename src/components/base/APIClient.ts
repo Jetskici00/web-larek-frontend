@@ -32,10 +32,11 @@ export class APIClient {
 
 	// Выполняет GET-запрос
 	get(uri: string) {
-		return fetch(this.baseUrl + uri, {
+		const url = `${this.baseUrl}${uri}`;
+		return fetch(url, {
 			...this.options,
 			method: 'GET',
-		}).then((response) => this.handleResponse(response));
+		}).then(this.handleResponse);
 	}
 
 	// Выполняет POST-запрос

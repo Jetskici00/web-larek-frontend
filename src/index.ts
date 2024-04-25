@@ -57,8 +57,8 @@ events.on('catalog:install', () => {
 			onClick: () => events.emit('card:select', item),
 		});
 		return card.render({
-			name: item.name,
-			imageUrl: item.imageUrl,
+			title: item.title,
+			image: item.image,
 			category: item.category,
 			price: item.price,
 		});
@@ -77,8 +77,8 @@ events.on('card:select', (item: Product) => {
 	});
 	return modalWindow.render({
 		content: card.render({
-			name: item.name,
-			imageUrl: item.imageUrl,
+			title: item.title,
+			image: item.image,
 			description: item.description,
 			price: item.price,
 			category: item.category,
@@ -107,7 +107,7 @@ events.on('basket:open', () => {
 		});
 		card.index = (index + 1).toString();
 		return card.render({
-			name: item.name,
+			title: item.title,
 			price: item.price,
 		});
 	});
@@ -136,7 +136,7 @@ events.on('basket:changed', (items: Product[]) => {
 		});
 		card.index = (index + 1).toString();
 		return card.render({
-			name: item.name,
+			title: item.title,
 			price: item.price,
 		});
 	});

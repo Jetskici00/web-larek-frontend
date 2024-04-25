@@ -44,7 +44,7 @@ export class ItemCard extends UserInterfaceComponent<ItemCardData> {
 	}
 
 	// Устанавливает название товара
-	set name(value: string) {
+	set title(value: string) {
 		this.setText(this._name, value);
 	}
 
@@ -54,8 +54,8 @@ export class ItemCard extends UserInterfaceComponent<ItemCardData> {
 	}
 
 	// Устанавливает URL изображения товара
-	set imageUrl(value: string) {
-		this.setImage(this._image, value, this.name);
+	set image(value: string) {
+		this.setImage(this._image, value, this.title);
 	}
 
 	// Устанавливает категорию товара

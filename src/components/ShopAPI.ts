@@ -20,7 +20,7 @@ export class ShopAPI extends APIClient {
 		return this.get(`/product`).then((data: ApiListResponse<ProductDetails>) =>
 			data.items.map((item) => ({
 				...item,
-				imageUrl: this.cdn + item.imageUrl,
+				image: this.cdn + item.image,
 			}))
 		);
 	}
