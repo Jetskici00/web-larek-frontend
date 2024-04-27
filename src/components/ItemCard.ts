@@ -13,6 +13,10 @@ export class ItemCard extends UserInterfaceComponent<ItemCardData> {
 	protected _button: HTMLButtonElement;
 	protected _index: HTMLElement;
 
+	public text(element: HTMLElement, value: string): void {
+		element.textContent = value;
+	}
+
 	constructor(container: HTMLElement, actions?: ItemCardActions) {
 		super(container);
 
@@ -45,7 +49,7 @@ export class ItemCard extends UserInterfaceComponent<ItemCardData> {
 
 	// Устанавливает название товара
 	set title(value: string) {
-		this.setText(this._name, value);
+		this.text(this._name, value);
 	}
 
 	// Возвращает название товара
@@ -60,16 +64,16 @@ export class ItemCard extends UserInterfaceComponent<ItemCardData> {
 
 	// Устанавливает категорию товара
 	set category(value: string) {
-		this.setText(this._category, value);
+		this.text(this._category, value);
 		this._category.classList.add(categoryColour[value]);
 	}
 
 	// Устанавливает цену товара
 	set price(value: number | null) {
 		if (value !== null) {
-			this.setText(this._price, `${value} синапсов`);
+			this.text(this._price, `${value} синапсов`);
 		} else {
-			this.setText(this._price, 'Бесценно');
+			this.text(this._price, 'Бесценно');
 			if (this._button) {
 				this._button.disabled = true;
 			}
@@ -79,15 +83,15 @@ export class ItemCard extends UserInterfaceComponent<ItemCardData> {
 	// Устанавливает текст кнопки
 	set buttonText(status: string) {
 		if (status === 'basket') {
-			this.setText(this._button, 'Удалить');
+			this.text(this._button, 'Удалить');
 		} else {
-			this.setText(this._button, 'В корзину');
+			this.text(this._button, 'В корзину');
 		}
 	}
 
 	// Устанавливает описание товара
 	set description(value: string) {
-		this.setText(this._description, value);
+		this.text(this._description, value);
 	}
 
 	set index(value: string) {
