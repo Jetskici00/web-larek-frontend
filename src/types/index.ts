@@ -45,7 +45,7 @@ export interface FieldState {
 
 // Адрес доставки
 export interface DeliveryInfo {
-	paymentType: string;
+	payment: string;
 	address: string;
 }
 

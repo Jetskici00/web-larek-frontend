@@ -1,4 +1,6 @@
 import {
+	FormErrorsContacts,
+	FormErrorsOrder,
 	CustomerContacts,
 	DeliveryInfo,
 	OrderData,
@@ -33,11 +35,14 @@ export class ApplicationState extends Product {
 	order: OrderData = {
 		address: '',
 		items: [],
-		paymentType: 'online',
+		payment: 'online',
 		email: '',
 		phone: '',
 		total: 0,
 	};
+
+	formErrorsOrder: FormErrorsOrder = {};
+	formErrorsContacts: FormErrorsContacts = {};
 
 	// Очищает корзину
 	clearBasket() {
@@ -69,12 +74,13 @@ export class ApplicationState extends Product {
 
 	// Проверяет валидность данных о доставке
 	validateOrder() {
-		const errors: Partial<DeliveryInfo> = {};
+		const errors: typeof this.formErrorsOrder = {};
 
 		if (!this.order.address) {
 			errors.address = 'Необходимо указать адрес';
 		}
-		this.emitChanges('formErrorsOrder:change', errors);
+		this.formErrorsOrder = errors;
+		this.events.emit('formErrorsOrder:change', this.formErrorsOrder);
 
 		return Object.keys(errors).length === 0;
 	}
@@ -89,7 +95,7 @@ export class ApplicationState extends Product {
 
 	// Проверяет валидность контактной информации
 	validateContacts() {
-		const errors: Partial<CustomerContacts> = {};
+		const errors: typeof this.formErrorsContacts = {};
 
 		if (!this.order.email) {
 			errors.email = 'Необходимо указать email';
@@ -97,7 +103,8 @@ export class ApplicationState extends Product {
 		if (!this.order.phone) {
 			errors.phone = 'Необходимо указать телефон';
 		}
-		this.emitChanges('formErrorsContacts:change', errors);
+		this.formErrorsContacts = errors;
+		this.events.emit('formErrorsContacts:change', this.formErrorsContacts);
 
 		return Object.keys(errors).length === 0;
 	}

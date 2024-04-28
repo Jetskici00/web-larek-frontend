@@ -127,8 +127,8 @@ events.on('item:toggle', (item: Product) => {
 });
 
 // Изменение содержимого корзины
-events.on('basket:changed', (items: Product[]) => {
-	shoppingCart.items = items.map((item, index) => {
+events.on('basket:changed', () => {
+	shoppingCart.items = appData.getBasketList().map((item, index) => {
 		const card = new ItemCard(cloneTemplate(cartItemTemplate), {
 			onClick: () => {
 				events.emit('item:toggle', item);
@@ -140,6 +140,7 @@ events.on('basket:changed', (items: Product[]) => {
 			price: item.price,
 		});
 	});
+	mainPageContext.counter = appData.getBasketList().length;
 	appData.order.total = appData.getTotal();
 	shoppingCart.total = appData.getTotal();
 });
@@ -159,7 +160,7 @@ events.on('order:open', () => {
 events.on('payment:toggle', (name: HTMLElement) => {
 	if (!name.classList.contains('button_alt-active')) {
 		deliveryForm.selectPaymentMethod(name);
-		appData.order.paymentType = PaymentMethods[name.getAttribute('name')];
+		appData.order.payment = PaymentMethods[name.getAttribute('name')];
 	}
 });
 
