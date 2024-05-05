@@ -99,22 +99,6 @@ events.on('modal:close', () => {
 
 // Открытие корзины
 events.on('basket:open', () => {
-	shoppingCart.items = appData.getBasketList().map((item, index) => {
-		const card = new ItemCard(cloneTemplate(cartItemTemplate), {
-			onClick: () => {
-				events.emit('item:toggle', item);
-			},
-		});
-		card.index = (index + 1).toString();
-		return card.render({
-			title: item.title,
-			price: item.price,
-		});
-	});
-	mainPageContext.counter = appData.getBasketList().length;
-	shoppingCart.selectedIds = appData.getBasketList();
-	shoppingCart.total = appData.getTotal();
-	appData.order.total = appData.getTotal();
 	return modalWindow.render({
 		content: shoppingCart.render(),
 	});

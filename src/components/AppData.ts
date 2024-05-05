@@ -5,6 +5,7 @@ import {
 	DeliveryInfo,
 	OrderData,
 	ProductDetails,
+	Product,
 } from '../types';
 import { DataModel } from './base/DataModel';
 
@@ -13,23 +14,8 @@ export type CatalogChangeEvent = {
 	catalog: Product[];
 };
 
-// Статусы продукта
-export type ProductStatus = 'basket' | 'sell';
-
-// Класс для представления одного продукта
-export class Product extends DataModel<ProductDetails> {
-	id: string;
-	description: string;
-	image: string;
-	title: string;
-	category: string;
-	price: number | null;
-	status: ProductStatus = 'sell';
-	quantity = 0;
-}
-
 // Класс для управления состоянием приложения
-export class ApplicationState extends Product {
+export class ApplicationState extends DataModel<OrderData> {
 	basketList: Product[] = [];
 	catalog: Product[];
 	order: OrderData = {
@@ -40,7 +26,6 @@ export class ApplicationState extends Product {
 		phone: '',
 		total: 0,
 	};
-
 	formErrorsOrder: FormErrorsOrder = {};
 	formErrorsContacts: FormErrorsContacts = {};
 
@@ -59,7 +44,11 @@ export class ApplicationState extends Product {
 
 	// Устанавливает список товаров
 	setCatalog(items: ProductDetails[]) {
-		this.catalog = items.map((item) => new Product(item, this.events));
+		this.catalog = items.map((item) => ({
+			...item,
+			status: 'sell',
+			quantity: 0,
+		})); // Создаем объекты типа Product
 		this.emitChanges('catalog:install', { catalog: this.catalog });
 	}
 
@@ -129,3 +118,5 @@ export class ApplicationState extends Product {
 		return this.basketList;
 	}
 }
+
+export { Product };

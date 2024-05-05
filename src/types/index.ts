@@ -14,6 +14,20 @@ export interface ProductDetails {
 	price: number | null;
 }
 
+// Статусы продукта
+export type ProductStatus = 'basket' | 'sell';
+
+// Интерфейс продукта
+export interface Product {
+	id: string;
+	description: string;
+	image: string;
+	title: string;
+	category: string;
+	price: number | null;
+	status: ProductStatus;
+	quantity: number;
+}
 // Действия, доступные для карточки товара
 export interface ItemCardActions {
 	onClick: (event: MouseEvent) => void;
