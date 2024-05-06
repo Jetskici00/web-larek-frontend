@@ -200,6 +200,7 @@ events.on('contacts:submit', () => {
 		.then((result) => {
 			appData.clearBasket();
 			mainPageContext.counter = appData.getBasketList().length;
+			events.emit('basket:changed');
 			const success = new OrderConfirmation(cloneTemplate(successTemplate), {
 				onClick: () => {
 					modalWindow.close();
